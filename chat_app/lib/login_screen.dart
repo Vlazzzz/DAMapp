@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 TextSelectionTheme(
                   data: TextSelectionThemeData(
-                    cursorColor: Colors.black, // Change cursor color to black
+                    cursorColor: Colors.blue, // Change cursor color to black
                     selectionColor: Colors.grey, // Change selection color to grey
                     selectionHandleColor:
                     Colors.grey, // Change selection handle color to grey
@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 20),
                 TextSelectionTheme(
                   data: TextSelectionThemeData(
-                    cursorColor: Colors.black, // Change cursor color to black
+                    cursorColor: Colors.blue, // Change cursor color to black
                     selectionColor: Colors.grey, // Change selection color to grey
                     selectionHandleColor:
                     Colors.grey, // Change selection handle color to grey

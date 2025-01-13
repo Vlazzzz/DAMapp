@@ -80,6 +80,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       Expanded(
                         child: TextFormField(
                           controller: _textController,
+                          cursorColor: Colors.blue, // Set the cursor color to blue
                           decoration: InputDecoration(
                             hintText: 'Type a message...',
                             border: InputBorder.none,

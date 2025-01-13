@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:chat_app/auth_provider.dart';
 import 'package:chat_app/home_screen.dart';
 import 'package:chat_app/login_screen.dart';
@@ -48,6 +49,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return await ref.getDownloadURL();
   }
 
+  Future<void> _triggerNotification() async {
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 1, // Unique notification ID
+        channelKey: 'basic_channel', // Ensure this matches the initialized channel
+        title: 'Account Created',
+        body: 'Account created successfully!',
+        notificationLayout: NotificationLayout.Default,
+      ),
+    );
+  }
+
   Future<void> _signUp() async {
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
@@ -60,6 +73,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         'email': _emailController.text,
         'imageUrl': imageUrl,
       });
+
+      // Trigger the notification
+      await _triggerNotification();
 
       Fluttertoast.showToast(msg: "Sign up successful");
 
@@ -118,6 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 TextFormField(
                   controller: _nameController,
                   keyboardType: TextInputType.name,
+                  cursorColor: Colors.blue, // Set cursor color to blue
                   decoration: InputDecoration(
                     labelText: "Name",
                     labelStyle: TextStyle(
@@ -128,17 +145,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       borderSide: BorderSide(color: Colors.blue),
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter name.';
-                    }
-                    return null;
-                  },
                 ),
                 SizedBox(height: 20),
                 TextFormField(
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  cursorColor: Colors.blue, // Set cursor color to blue
                   decoration: InputDecoration(
                     labelText: "Email",
                     labelStyle: TextStyle(
@@ -149,18 +161,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       borderSide: BorderSide(color: Colors.blue),
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter email.';
-                    }
-                    return null;
-                  },
                 ),
                 SizedBox(height: 20),
                 TextFormField(
                   controller: _passController,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: true,
+                  cursorColor: Colors.blue, // Set cursor color to blue
                   decoration: InputDecoration(
                     labelText: "Password",
                     labelStyle: TextStyle(
@@ -171,12 +178,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       borderSide: BorderSide(color: Colors.blue),
                     ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter password.';
-                    }
-                    return null;
-                  },
                 ),
                 SizedBox(height: 50),
                 SizedBox(

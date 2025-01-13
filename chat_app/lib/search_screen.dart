@@ -57,6 +57,7 @@ class _SearchScreenState extends State<SearchScreen> {
             padding: EdgeInsets.all(10),
             child: TextField(
               controller: _searchController,
+              cursorColor: Colors.blue, // Set the cursor color to blue
               onChanged: handleSearch,
               decoration: InputDecoration(
                 hintText: "Search users...",
